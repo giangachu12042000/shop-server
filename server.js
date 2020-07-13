@@ -8,7 +8,7 @@ const Bcrypt = require('bcryptjs');
 const dotenv = require('dotenv') ; 
 const path = require('path');
 const fileUpload  = require('express-fileupload');
-
+const api = require('./server/api');
 dotenv.config();
 
 db.ready.then(() => {
@@ -30,6 +30,7 @@ db.ready.then(() => {
     );
     app.use(fileUpload());
     app.use('/images', express.static(path.resolve(process.cwd(), 'images')));
+    app.use('/api',api);
 })
 
 app.listen(4000, err =>{
